@@ -1,5 +1,3 @@
-module Lista1 where
-
 {-
 1. Declare uma função que receba as 3 medidas dos lados de um triangulo, a função deve 
 informar se as medidas podem formar um triângulo Retornando a True em caso 
