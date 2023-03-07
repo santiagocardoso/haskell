@@ -1,0 +1,62 @@
+﻿a) (λx.λy.λw.λu.x (y w) u) (λs.λz.s (s z)) (λa.λb.a (a (a b))) 
+
+
+(λx.λy.λw.λu.x (y w) u) (λs.λz.s (s z)) (λa.λb.a (a (a b))) ->
+(λy.λw.λu.x (y w) u) [(λs.λz.s (s z))/x] (λa.λb.a (a (a b))) =
+(λy.λw.λu.(λs.λz.s (s z)) (y w) u) (λa.λb.a (a (a b))) ->
+(λw.λu.(λs.λz.s (s z)) (y w) u) [(λa.λb.a (a (a b)))/y] =
+(λw.λu.(λs.λz.s (s z)) ((λa.λb.a (a (a b))) w) u) ->
+(λw.λu.(λz.s (s z)) [((λa.λb.a (a (a b))) w)/s] u) =
+(λw.λu.(λz.((λa.λb.a (a (a b))) w) (((λa.λb.a (a (a b))) w) z) u) ->
+(λw.λu.(((λa.λb.a (a (a b))) w) (((λa.λb.a (a (a b))) w) z) [u/z]) =
+λw.λu.(((λa.λb.a (a (a b))) w) (((λa.λb.a (a (a b))) w) u) ->
+λw.λu.(((λa.λb.a (a (a b))) w) (((λb.a (a (a b))) u) [w/a]) =
+λw.λu.(((λa.λb.a (a (a b))) w) (((λb.w (w (w b))) u)) ->
+λw.λu.(((λa.λb.a (a (a b))) w) (((w (w (w b))) [u/b])) =
+λw.λu.(((λa.λb.a (a (a b))) w) (((w (w (w u))))) ->
+λw.λu.(((λb.a (a (a b))) [w/a]) (((w (w (w u))))) =
+λw.λu.(((λb.w (w (w b)))) (((w (w (w u))))) ->
+λw.λu.(((λb.w (w (w b)))) [(w (w (w u)))/b] =
+λw.λu.(w (w (w (w (w (w u))))))
+
+
+b) (λx.x(λu.λv.v)(λa.λb.a)) ((λx.x(λuλv.v)(λa.λb.a))(λc.λd.c))
+
+
+(λx.x(λu.λv.v)(λa.λb.a)) ((λx.x(λuλv.v)(λa.λb.a))(λc.λd.c)) ->
+(λx.x(λv.v)[(λa.λb.a)/u]) ((λx.x(λuλv.v)(λa.λb.a))(λc.λd.c)) =
+(λx.x(λv.v)) ((λx.x(λuλv.v)(λa.λb.a))(λc.λd.c)) ->
+(λx.x(λv.v)) ((λx.x(λv.v)[(λa.λb.a)/u])(λc.λd.c)) =
+(λx.x(λv.v)) ((λx.x(λv.v))(λc.λd.c)) ->
+(λx.x(λv.v)) ((λx.x(v))[(λc.λd.c)/v]) =
+(λx.x(λv.v)) (λx.x((λc.λd.c))) ->
+(x(λv.v)) [(λx.x((λc.λd.c)))/x] =
+(x((λc.λd.c)))(λv.v) ->
+(x((λc.λd.c)))[(λv.v)/x] =
+(λv.v)(λc.λd.c) ->
+(v)[(λc.λd.c)/v] = 
+λc.λd.c
+
+
+c) (λn.λf.λx.n (λg.λh.h (g f))(λu.x)(λw.w)) (λs.λz.s (s z))
+
+
+(λn.λf.λx.n (λg.λh.h (g f))(λu.x)(λw.w)) (λs.λz.s (s z)) ->
+λf.λx.n (λg.λh.h (g f))(λu.x)(λw.w) [(λs.λz.s (s z))/n] =
+λf.λx.(λs.λz.s (s z))(λg.λh.h(gf))(λu.x)(λw.w) ->
+λf.λx.(λz.s (s z))[(λg.λh.h (g f))/s](λu.x)(λw.w) =
+λf.λx.(λz.(λg.λh.h (g f))((λg.λh.h (g f)) z))(λu.x)(λw.w) ->
+λf.λx.(λz.(λg.λh.h (g f))((λh.h (g f)) [z/g]))(λu.x)(λw.w) =
+λf.λx.(λz.(λg.λh.h (g f))((λh.h (z f))))(λu.x)(λw.w) ->
+λf.λx.(λz.(λh.h (g f))[((λh.h (z f)))/g])(λu.x)(λw.w) =
+λf.λx.(λz.(λh.h ((λh.h (z f)) f)))(λu.x)(λw.w) ->
+λf.λx.(λz.(λh.h ((λh.h (z f)) [f/h])))(λu.x)(λw.w) =
+λf.λx.(λz.(λh.h ((f (z f)))))(λu.x)(λw.w) ->
+λf.λx.(λz.(λh.h ((f (z f)))))[(λu.x)/z](λw.w) =
+λf.λx.(λh.h ((f ((λu.x) f)))))(λw.w) ->
+λf.λx.(h ((f ((λu.x) f)))))[(λw.w)/h] =
+λf.λx.((λw.w) ((f ((λu.x) f)))) ->
+λf.λx.((λw.w) ((f ((x) [f/u])))) =
+λf.λx.((λw.w) (f (x))) ->
+λf.λx.((w) [(f (x))/w]) =
+λf.λx.f x
